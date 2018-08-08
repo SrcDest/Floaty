@@ -79,7 +79,7 @@ open class Floaty: UIView {
      Button color.
      */
     @IBInspectable
-    @objc open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
+    @objc open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 0)
     
     /**
      Button image.
@@ -646,12 +646,13 @@ open class Floaty: UIView {
     fileprivate func setButtonImage() {
         buttonImageView.removeFromSuperview()
         buttonImageView = UIImageView(image: buttonImage)
+        buttonImageView.contentMode = .scaleToFill
         buttonImageView.tintColor = plusColor
         buttonImageView.frame = CGRect(
-            x: circleLayer.frame.origin.x + (size / 2 - buttonImageView.frame.size.width / 2),
-            y: circleLayer.frame.origin.y + (size / 2 - buttonImageView.frame.size.height / 2),
-            width: buttonImageView.frame.size.width,
-            height: buttonImageView.frame.size.height
+            x: circleLayer.frame.origin.x,
+            y: circleLayer.frame.origin.y,
+            width: circleLayer.frame.size.width,
+            height: circleLayer.frame.size.height
         )
         
         addSubview(buttonImageView)
@@ -688,7 +689,7 @@ open class Floaty: UIView {
         
         circleLayer.shadowOffset = CGSize(width: 1, height: 1)
         circleLayer.shadowRadius = 2
-        circleLayer.shadowColor = UIColor.black.cgColor
+        circleLayer.shadowColor = UIColor.clear.cgColor
         circleLayer.shadowOpacity = 0.4
     }
     
